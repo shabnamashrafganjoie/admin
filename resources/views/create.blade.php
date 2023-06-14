@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('head-tag')
-<title>دسته بندی</title>
+<title>کاربران</title>
 @endsection
 
 @section('content')
@@ -14,12 +14,12 @@
         <section class="main-body-container">
             <section class="main-body-container-header">
                 <h5>
-                  ایجاد دسته بندی
+                  ایجاد کاربر
                 </h5>
             </section>
 
             <section class="d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-                <a href="{{ route('index') }}" class="btn btn-info btn-sm">بازگشت</a>
+                <a href="{{ route('home') }}" class="btn btn-info btn-sm">بازگشت</a>
             </section>
 
             <section>
@@ -30,9 +30,9 @@
                         <section class="col-12 col-md-6">
                             <div class="form-group">
                                 <label for="">نام </label>
-                                <input type="text" name="name" value="{{ old('first_name') }}" class="form-control form-control-sm">
+                                <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" class="form-control form-control-sm">
                             </div>
-                            @error('name')
+                            @error('first_name')
                                 <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
                                     <strong>
                                         {{ $message }}
@@ -41,63 +41,62 @@
                             @enderror
                         </section>
 
+
+
                         <section class="col-12 col-md-6">
                             <div class="form-group">
-                                <label for="">منو والد</label>
-                                <select name="parent_id" id="" class="form-control form-control-sm">
-                                    <option value="">منوی اصلی</option>
-                                    @foreach ($categories as $category)
-
-                                    <option value="{{ $category->id }}"  @if(old('parent_id') == $category->id) selected @endif>{{ $category->name }}</option>
-
-                                    @endforeach
-
-                                </select>
+                                <label for="">نام خانوادگی </label>
+                                <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" class="form-control form-control-sm">
                             </div>
-                            @error('parent_id')
-                            <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
-                                <strong>
-                                    {{ $message }}
-                                </strong>
-                            </span>
-                        @enderror
+                            @error('last_name')
+                                <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
+                                    <strong>
+                                        {{ $message }}
+                                    </strong>
+                                </span>
+                            @enderror
                         </section>
 
-                        <section class="col-12">
+
+                        <section class="col-12 col-md-6">
                             <div class="form-group">
-                                <label for="">توضیحات</label>
-                                <textarea name="description" id="description"  class="form-control form-control-sm" rows="6">
-                                    {{ old('description') }}
-                                </textarea>
+                                <label for="">موبایل </label>
+                                <input type="text" id="mobile" name="mobile" value="{{ old('mobile') }}" class="form-control form-control-sm">
                             </div>
-                            @error('description')
-                            <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
-                                <strong>
-                                    {{ $message }}
-                                </strong>
-                            </span>
-                        @enderror
+                            @error('mobile')
+                                <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
+                                    <strong>
+                                        {{ $message }}
+                                    </strong>
+                                </span>
+                            @enderror
                         </section>
 
-                        <section class="col-12 col-md-6 my-2">
+
+
+                        <section class="col-12 col-md-6">
                             <div class="form-group">
-                                <label for="image">تصویر</label>
-                                <input type="file" class="form-control form-control-sm" name="image" id="image">
+                                <label for="">رمز عبور </label>
+                                <input type="text" id="password" name="password" value="{{ old('password') }}" class="form-control form-control-sm">
                             </div>
-                            @error('image')
-                            <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
-                                <strong>
-                                    {{ $message }}
-                                </strong>
-                            </span>
-                        @enderror
+                            @error('password')
+                                <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
+                                    <strong>
+                                        {{ $message }}
+                                    </strong>
+                                </span>
+                            @enderror
                         </section>
+
+
+
+                     
 
 
                         <section class="col-12 col-md-6 my-2">
                             <div class="form-group">
-                                <label for="status">وضعیت</label>
-                                <select name="status" id="" class="form-control form-control-sm" id="status">
+                                <label for="status">وضعیت نمایش کاربر</label>
+                                <select name="status" class="form-control form-control-sm" id="status">
                                     <option value="0" @if(old('status') == 0) selected @endif>غیرفعال</option>
                                     <option value="1" @if(old('status') == 1) selected @endif>فعال</option>
                                 </select>
@@ -111,44 +110,7 @@
                         @enderror
                         </section>
 
-                        <section class="col-12 col-md-6 my-2">
-                            <div class="form-group">
-                                <label for="show_in_menu">نمایش در منو</label>
-                                <select name="show_in_menu" id="" class="form-control form-control-sm" id="show_in_menu">
-                                    <option value="0" @if(old('show_in_menu') == 0) selected @endif>غیرفعال</option>
-                                    <option value="1" @if(old('show_in_menu') == 1) selected @endif>فعال</option>
-                                </select>
-                            </div>
-                            @error('show_in_menu')
-                            <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
-                                <strong>
-                                    {{ $message }}
-                                </strong>
-                            </span>
-                        @enderror
-                        </section>
-
-
-                        <section class="col-12 col-md-6 my-2">
-                            <div class="form-group">
-                                <label for="tags">تگ ها</label>
-                                <input type="hidden" class="form-control form-control-sm"  name="tags" id="tags" value="{{ old('tags') }}">
-                                <select class="select2 form-control form-control-sm" id="select_tags" multiple>
-
-                                </select>
-                            </div>
-                            @error('tags')
-                            <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
-                                <strong>
-                                    {{ $message }}
-                                </strong>
-                            </span>
-                        @enderror
-                        </section>
-
-
-
-
+                       
                         <section class="col-12">
                             <button class="btn btn-primary btn-sm">ثبت</button>
                         </section>

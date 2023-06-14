@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\AdminDashboardModel;
 
 class AdminDashboardController extends Controller
 {
@@ -13,7 +15,9 @@ class AdminDashboardController extends Controller
      */
     public function index()
     {
-        return view('index');
+
+        $users=User::where('status','1')->get();
+        return view('index',compact('users'));
     }
 
     /**
@@ -23,8 +27,8 @@ class AdminDashboardController extends Controller
      */
     public function create()
     {
-        dd('hi');
-      return redirect()->route('create')->with('swal-error', 'کاربر شما با موفقیت ساخته شد');
+
+        return view('create');
 
     }
 
@@ -36,7 +40,15 @@ class AdminDashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inputs=$request->all();
+        $userDB=User::where('mobile',$inputs['mobile'])->first();
+
+        if($userDB != null){
+            return redirect()->route('home')->with('swal-error', 'کاربر شما قبلا ساخته شده است');
+        }else{
+            $user = User::create($inputs);
+        return redirect()->route('home')->with('swal-success', 'کاربر جدید شما با موفقیت ساخته شد');
+        }
     }
 
     /**

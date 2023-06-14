@@ -9,6 +9,8 @@
 
 
 
+
+
   <section class="row">
     <section class="col-12">
         <section class="main-body-container">
@@ -28,28 +30,35 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>نام دسته بندی</th>
-                            <th>دسته والد</th>
+                            <th>نام کاربر</th>
+                            <th>نام خانوادگی کاربر</th>
+                            <th>موبایل کاربر</th>
+
+
                             <th class="max-width-16-rem text-center"><i class="fa fa-cogs"></i> تنظیمات</th>
                         </tr>
                     </thead>
                     <tbody>
 
+                    @foreach($users as $user)
+
                         <tr>
-                            <th>1</th>
-                            <td>2</td>
-                            <td>3</td>
-                            <td class="width-16-rem text-left">
+                            <th>{{$loop->iteration}}</th>
+                            <td>{{$user->first_name}}</td>
+                            <td>{{$user->last_name}}</td>
+                            <td>{{$user->mobile}}</td>
+
+                            <td class="width-16-rem text-center">
                                 <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> ویرایش</a>
                                 <form class="d-inline" action="#" method="post">
                                     @csrf
                                  <!--   {{ method_field('delete') }} -->
                                 <button class="btn btn-danger btn-sm delete" type="submit"><i class="fa fa-trash-alt"></i> حذف</button>
                             </form>
-                                        </td>
+                            </td>
                         </tr>
 
-
+                              @endforeach
 
                     </tbody>
                 </table>
