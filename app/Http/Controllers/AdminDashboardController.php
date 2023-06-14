@@ -102,8 +102,9 @@ class AdminDashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $dlUser = $user->delete();
+        return redirect()->route('home')->with('swal-success', 'کاربر شما با موفقیت حذف شد');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminDashboardController;
 
 /*
@@ -24,6 +25,18 @@ use App\Http\Controllers\AdminDashboardController;
  Route::post('/store', [AdminDashboardController::class, 'store'])->name('store');
  Route::get('/edit/{user}', [AdminDashboardController::class, 'edit'])->name('edit');
  Route::put('/update/{user}', [AdminDashboardController::class, 'update'])->name('update');
+ Route::delete('/destroy/{user}', [AdminDashboardController::class, 'destroy'])->name('destroy');
+
+
+
+ //login
+ Route::get('/login', [LoginController::class, 'index'])->name('index');
+
+ Route::get('/checkLogin', [LoginController::class, 'login'])->name('login');
+ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+
 
 
 
