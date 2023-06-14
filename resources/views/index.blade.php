@@ -49,7 +49,7 @@
                             <td>{{$user->mobile}}</td>
 
                             <td class="width-16-rem text-center">
-                                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> ویرایش</a>
+                                <a href="{{route('edit',$user->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> ویرایش</a>
                                 <form class="d-inline" action="#" method="post">
                                     @csrf
                                  <!--   {{ method_field('delete') }} -->

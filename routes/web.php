@@ -22,6 +22,8 @@ use App\Http\Controllers\AdminDashboardController;
  Route::get('/', [AdminDashboardController::class, 'index'])->name('home');
  Route::get('/create', [AdminDashboardController::class, 'create'])->name('create');
  Route::post('/store', [AdminDashboardController::class, 'store'])->name('store');
+ Route::get('/edit/{id}', [AdminDashboardController::class, 'edit'])->name('edit');
+ Route::post('/update', [AdminDashboardController::class, 'update'])->name('update');
 
 
 
