@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use App\Models\AdminDashboardModel;
 
 class AdminDashboardController extends Controller
@@ -16,7 +17,7 @@ class AdminDashboardController extends Controller
     public function index()
     {
 
-        $users=User::where('status','1')->get();
+        $users=User::all();
         return view('index',compact('users'));
     }
 
@@ -38,7 +39,7 @@ class AdminDashboardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $inputs=$request->all();
         $userDB=User::where('mobile',$inputs['mobile'])->first();
@@ -68,10 +69,11 @@ class AdminDashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
 
-        return view('edit',compact('id'));
+        $user=User::where('id',$user->id)->first();
+        return view('edit',compact('user'));
 
     }
 
@@ -82,9 +84,16 @@ class AdminDashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request,User $user)
     {
-        //
+
+
+        $inputs=$request->all();
+
+       $user->update($inputs);
+
+       return redirect()->route('home')->with('swal-success', 'کاربر شما با موفقیت به روزرسانی شد');
+
     }
 
     /**
