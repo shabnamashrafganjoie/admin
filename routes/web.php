@@ -32,7 +32,7 @@ use App\Http\Controllers\AdminDashboardController;
  //login
  Route::get('/login', [LoginController::class, 'index'])->name('index');
 
- Route::get('/checkLogin', [LoginController::class, 'login'])->name('login');
+ Route::post('/checkLogin', [LoginController::class, 'login'])->name('login');
  Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 

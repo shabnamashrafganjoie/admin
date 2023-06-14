@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 
 class LoginController extends Controller
 {
@@ -19,6 +20,13 @@ class LoginController extends Controller
      //dd($inputs);
 
 
+    }
+
+
+    public function login(LoginRequest $request){
+        $inputs=$request->all();
+        dd($inputs);
+        $username=$inputs['mobile'];
     }
 
     /**
