@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Models\AdminDashboardModel;
+use Illuminate\Support\Facades\Auth;
 
 class AdminDashboardController extends Controller
 {
@@ -16,9 +17,14 @@ class AdminDashboardController extends Controller
      */
     public function index()
     {
+        if(Auth::check() == true){
+            $users=User::all();
+            return view('index',compact('users'));
+                }elseif(Auth::check() == false){
+                    return view('login');
 
-        $users=User::all();
-        return view('index',compact('users'));
+                }
+    
     }
 
     /**
