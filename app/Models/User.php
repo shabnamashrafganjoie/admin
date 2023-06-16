@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Role;
+use App\Models\Permission;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -39,4 +41,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    public function roles(){
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function permissions(){
+        return $this->belongsToMany(Permission::class);
+    }
+
+
+  
+
 }

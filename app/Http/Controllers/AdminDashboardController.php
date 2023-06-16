@@ -17,6 +17,7 @@ class AdminDashboardController extends Controller
      */
     public function index()
     {
+
         if(Auth::check() == true){
             $users=User::all();
             return view('index',compact('users'));

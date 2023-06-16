@@ -15,6 +15,7 @@
 
     <section class="body-container">
 
+    @include('layouts.sidebar')
 
 
         <section id="main-body" class="main-body">
