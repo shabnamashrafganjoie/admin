@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Permission extends Model
 {
     public $table = "permissions";
+    protected $fillable=['name','description','status'];
 
     use HasFactory,SoftDeletes;
 
