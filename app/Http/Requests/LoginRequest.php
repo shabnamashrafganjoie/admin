@@ -24,7 +24,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'mobile' => 'required|unique:users|max:11|min:11|regex:/^[0-9\-۰-۹]+$/u',
+            'mobile' => 'required|max:11|min:11|regex:/^[0-9\-۰-۹]+$/u',
             'password' => 'required|max:10|min:6|regex:/^[0-9\-۰-۹]+$/u',
         ];
     }

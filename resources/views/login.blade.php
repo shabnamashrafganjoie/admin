@@ -23,7 +23,8 @@
 </head>
 <body>
 
-
+<form class="d-inline" action="{{ route('login') }}" method="get">
+                @csrf
     <section class="vh-100 d-flex justify-content-center align-items-center pb-5">
         <section class="login-wrapper mb-5">
             <section class="login-logo">
@@ -56,7 +57,7 @@
             </section> -->
             <section class="login-info">
                                 <label for="">شماره موبایل خود را وارد کنید </label>
-                                <input type="text" id="mobile" name="mobile" value="{{ old('mobile') }}" class="form-control form-control-sm">
+                                <input type="text" id="mobile" name="mobile"  class="form-control form-control-sm" value="{{old('mobile')}}">
                             </div>
                             @error('mobile')
                                 <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
@@ -71,7 +72,7 @@
 
             <section class="login-info">
                                 <label for="">رمز عبور خود را وارد کنید </label>
-                                <input type="text" id="password" name="password" value="{{ old('password') }}" class="form-control form-control-sm">
+                                <input type="text" id="password" name="password"  class="form-control form-control-sm" value="{{old('password')}}">
                             </div>
                             @error('password')
                                 <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
@@ -87,12 +88,12 @@
 
 
             <section class="login-btn d-grid g-2">
-            <form class="d-inline" action="{{ route('login') }}" method="post">
-                @csrf
+            
                 <button class="btn btn-danger">ورود</button></section>
         </section>
     </section>
-
+    
+</form>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

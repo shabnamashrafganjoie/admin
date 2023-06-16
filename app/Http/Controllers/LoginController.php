@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
+use App\Models\User;
+
 
 class LoginController extends Controller
 {
@@ -12,7 +14,7 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         return view('login');
 
@@ -24,9 +26,21 @@ class LoginController extends Controller
 
 
     public function login(LoginRequest $request){
+
         $inputs=$request->all();
-        dd($inputs);
         $username=$inputs['mobile'];
+        $password=$inputs['password'];
+        $findUser=User::where('password',$password)->where('mobile',$username)->first();
+        if($findUser == null){
+            return redirect()->route('login')->with('swal-error', 'کاربری با این مشخصات یافت نشد');
+            }else{
+                
+                    $cookie_name = "Admin";
+                    $cookie_value = "Admin";
+                    setcookie($cookie_name,$cookie_value,time()+14400);
+                    return redirect()->route('home');
+                
+            }
     }
 
     /**
